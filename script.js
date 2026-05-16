@@ -19,14 +19,14 @@ function getHumanChoice(n) {
 }
 
 function playGame() {
+
   let humanScore = 0;
   let computerScore = 0;
-  for (let i = 0; i < 5; i++) {
-    let pick = prompt("Enter your choice: ", "");
-    let humanChoice = getHumanChoice(pick);
-    let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-  }
+  let pick = prompt("Enter your choice: ", "");
+  let humanChoice = getHumanChoice(pick);
+  let computerChoice = getComputerChoice();
+  playRound(humanChoice, computerChoice);
+
 
   function playRound(humanChoice, computerChoice) {
 
