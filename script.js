@@ -3,7 +3,6 @@ function getComputerChoice() {
 }
 
 function getHumanChoice(n) {
-  n = n.toLowerCase();
   if (n === "rock") {
     return 1;
   }
@@ -17,59 +16,75 @@ function getHumanChoice(n) {
     return "invalid input.";
   }
 }
+const rockbtn = document.querySelector("#rockbtn");
+const paperbtn = document.querySelector("#paperbtn");
+const scissorsbtn = document.querySelector("#scissorsbtn");
+const results = document.querySelector("#results");
+let humanScore = 0;
+let computerScore = 0;
+rockbtn.addEventListener("click", (e) => {
+  playGame("rock");
+});
+paperbtn.addEventListener("click", (e) => {
+  playGame("paper");
+});
+scissorsbtn.addEventListener("click", (e) => {
+  playGame("scissors");
+});
 
-function playGame() {
-
-  let humanScore = 0;
-  let computerScore = 0;
-  let pick = prompt("Enter your choice: ", "");
+function playGame(pick) {
   let humanChoice = getHumanChoice(pick);
   let computerChoice = getComputerChoice();
+
+  console.log(humanChoice);
+  console.log(computerChoice);
+
   playRound(humanChoice, computerChoice);
 
 
   function playRound(humanChoice, computerChoice) {
 
-
-    console.log(humanChoice);
-    console.log(computerChoice);
-
     if (humanChoice === computerChoice) {
-      alert("Draw!");
+      results.textContent = "Draw";
     }
     else if (humanChoice == 1 && computerChoice == 2) {
       computerScore += 1;
-      alert(`Computer wins! Current Score #Computer: ${computerScore} #You: ${humanScore}`);
+      results.textContent = `Computer wins! Current Score #Computer: ${computerScore} #You: ${humanScore}`;
     }
     else if (humanChoice == 2 && computerChoice == 1) {
       humanScore += 1;
-      alert(`You win! Current Score  #Computer: ${computerScore} #You: ${humanScore}`);
+      results.textContent = `You win! Current Score #Computer: ${computerScore} #You: ${humanScore}`;
     }
     else if (humanChoice == 1 && computerChoice == 3) {
       humanScore += 1;
-      alert(`You win! Current Score  #Computer: ${computerScore} #You: ${humanScore}`);
+      results.textContent = `You win! Current Score #Computer: ${computerScore} #You: ${humanScore}`;
     }
     else if (humanChoice == 3 && computerChoice == 1) {
       computerScore += 1;
-      alert(`Computer wins! Current Score #Computer: ${computerScore} #You: ${humanScore}`);
+      results.textContent = `Computer wins! Current Score #Computer: ${computerScore} #You: ${humanScore}`;
     }
     else if (humanChoice == 2 && computerChoice == 3) {
       computerScore += 1;
-      alert(`Computer wins! Current Score #Computer: ${computerScore} #You: ${humanScore}`);
+      results.textContent = `Computer wins! Current Score #Computer: ${computerScore} #You: ${humanScore}`;
     }
     else {
       humanScore += 1;
-      alert(`You win! Current Score  #Computer: ${computerScore} #You: ${humanScore}`);
+      results.textContent = `You win! Current Score #Computer: ${computerScore} #You: ${humanScore}`;
     }
   }
-  if (humanScore > computerScore) {
-    alert("You Win!");
+  if (humanScore == 5 && computerScore < 5) {
+    results.textContent = "You Win!";
+    humanScore = 0;
+    computerScore = 0;
   }
-  else if (computerScore > humanScore) {
-    alert("Computer Wins!");
+  else if (humanScore < 5 && computerScore == 5) {
+    results.textContent = "Computer Win!";
+    humanScore = 0;
+    computerScore = 0;
   }
-  else {
-    alert("Draw!");
+  else if (humanScore == 5 && computerScore == 5) {
+    results.textContent = "Draw!";
+    humanScore = 0;
+    computerScore = 0;
   }
 }
-playGame();
